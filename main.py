@@ -7,21 +7,30 @@ import esp32
 import ujson
 import requests
 
-######
+####################################
+# --- CUSTOM (3d print) ---
 # 11 cm -> r 55mm
 # 9503 mm2 - pole powierzchni
 # 1ml == 1000 mm3
 # 1000/9503=x mm, 2500/9503=x mm
-######
+#
+# --- MISOL: WH-SP-RG ---
+# 0.3537 per tip
+####################################
 
 NETWORK_SSID="WB8"
 NETWORK_PASS="1234567890"
-NAME="WB8"
+NAME="Jakubow18"  # WB8
 
-JSON_POST_URL="https://shark-app-v4kuj.ondigitalocean.app/weather-station/collector"
+JSON_POST_URL="https://weather.barulski.dev/weather-station/collector"
 
-RAIN_GAUGE_AREA_MM2 = 9503
-RAIN_GAUGE_ML_PER_TICK=5
+RAIN_GAUGE_CUSTOM_AREA_MM2 = 9503
+RAIN_GAUGE_CUSTOM_ML_PER_TICK = 5
+
+RAIN_GAUGE_WHSPRG_MM = 0.3537
+
+# RAIN_GAUGE_TYPE = "custom"
+RAIN_GAUGE_TYPE = "WH-SP-RG"
 
 def main():
     print("Booting...")
@@ -44,7 +53,7 @@ def main():
 
         json_data = {
             "name": NAME,
-            "rain_volume": round((RAIN_GAUGE_ML_PER_TICK*1000)/RAIN_GAUGE_AREA_MM2, 1),
+            "rain_volume": round((RAIN_GAUGE_CUSTOM_ML_PER_TICK * 1000) / RAIN_GAUGE_CUSTOM_AREA_MM2, 1) if RAIN_GAUGE_TYPE == "CUSTOM" else RAIN_GAUGE_WHSPRG_MM,
         }
 
         print("POSTing data to {0}: {1}".format(JSON_POST_URL, ujson.dumps(json_data)))
