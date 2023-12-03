@@ -20,9 +20,9 @@ import requests
 
 NETWORK_SSID="WB8"
 NETWORK_PASS="1234567890"
-NAME="Jakubow18"  # WB8
+NAME="J18"  # WB8
 
-JSON_POST_URL="https://weather.barulski.dev/weather-station/collector"
+JSON_POST_URL="https://weather.barulski.dev/api/v1/rain-gauge/"+NAME
 
 RAIN_GAUGE_CUSTOM_AREA_MM2 = 9503
 RAIN_GAUGE_CUSTOM_ML_PER_TICK = 5
@@ -52,8 +52,7 @@ def main():
         print('Hall current value: ', hall.value())
 
         json_data = {
-            "name": NAME,
-            "rain_volume": round((RAIN_GAUGE_CUSTOM_ML_PER_TICK * 1000) / RAIN_GAUGE_CUSTOM_AREA_MM2, 1) if RAIN_GAUGE_TYPE == "CUSTOM" else RAIN_GAUGE_WHSPRG_MM,
+            "volume": round((RAIN_GAUGE_CUSTOM_ML_PER_TICK * 1000) / RAIN_GAUGE_CUSTOM_AREA_MM2, 1) if RAIN_GAUGE_TYPE == "CUSTOM" else RAIN_GAUGE_WHSPRG_MM,
         }
 
         print("POSTing data to {0}: {1}".format(JSON_POST_URL, ujson.dumps(json_data)))
