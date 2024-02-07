@@ -18,8 +18,8 @@ import requests
 # 0.3537 per tip
 ####################################
 
-NETWORK_SSID="WB8"
-NETWORK_PASS="1234567890"
+NETWORK_SSID="dom"
+NETWORK_PASS="dom12345"
 NAME="J18"  # WB8
 
 JSON_POST_URL="https://weather.barulski.dev/api/v1/rain-gauge/"+NAME
