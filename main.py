@@ -18,11 +18,27 @@ import requests
 # 0.3537 per tip
 ####################################
 
-NETWORK_SSID="dom"
-NETWORK_PASS="dom12345"
-NAME="J18"  # WB8
+instances = dict(
+    test=dict(
+        name="Test",
+        network_ssid="WB8",
+        network_pass="1234567890",
+    ),
+    wb8=dict(
+        name="WB8",
+        network_ssid="WB8",
+        network_pass="1234567890",
+    ),
+    j18=dict(
+        name="J18",
+        network_ssid="dom",
+        network_pass="dom12345",
+    )
+)
 
-JSON_POST_URL="https://weather.barulski.dev/api/v1/rain-gauge/"+NAME
+CURRENT_INSTANCE=instances['test']
+
+JSON_POST_URL="https://weather.barulski.dev/api/v1/rain-gauge/"+CURRENT_INSTANCE['name']
 
 RAIN_GAUGE_CUSTOM_AREA_MM2 = 9503
 RAIN_GAUGE_CUSTOM_ML_PER_TICK = 5
@@ -67,13 +83,13 @@ def main():
 
 
 def wifi():
-    print("Connecting to WIFI '%s'..." % NETWORK_SSID)
+    print("Connecting to WIFI '%s'..." % CURRENT_INSTANCE['network_ssid'])
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
-    wlan.connect(NETWORK_SSID, NETWORK_PASS)
+    wlan.connect(CURRENT_INSTANCE['network_ssid'], CURRENT_INSTANCE['network_pass'])
     while not wlan.isconnected():
         pass
-    print("Connected to WIFI '%s'" % NETWORK_SSID)
+    print("Connected to WIFI '%s'" % CURRENT_INSTANCE['network_ssid'])
     print('IP addr: ', wlan.ifconfig()[0])
 
 #### TRIGGERED MANUALLY VIA REPL ON FIRT INSTALL ####
