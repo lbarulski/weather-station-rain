@@ -6,7 +6,7 @@ flash:
 	esptool.py --chip esp32 --port /dev/tty.wchusbserial2140 erase_flash
 	sleep 2
 	echo "--- Loading ESP32 Micropython firmware"
-	esptool.py --chip esp32 --port /dev/tty.wchusbserial2140 --baud 460800 write_flash -z 0x1000 esp32-20230426-v1.20.0.bin
+	esptool.py --chip esp32 --port /dev/tty.wchusbserial2140 --baud 460800 write_flash -z 0x1000 ESP32_GENERIC-20240222-v1.22.2.bin
 	sleep 2
 	echo "--- Firmware loaded successfully"
 
