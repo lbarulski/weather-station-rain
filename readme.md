@@ -1,10 +1,17 @@
-Install CH340 driver - CH34xVCPDriver
+### Dependencies:
+- CH340 driver - CH34xVCPDriver
+- make 
+- esptool.py 
+- ampy
 
-`esptool.py --chip esp32 --port /dev/tty.wchusbserial2140 erase_flash`
+### Installation on ESP32
+Modify main.py picking proper instance, and then:
+```bash
+cd scripts/
+make
+```
 
-`esptool.py --chip esp32 --port /dev/tty.wchusbserial2140 --baud 460800 write_flash -z 0x1000 esp32-20230426-v1.20.0.bin`
-
-Wiring:
+### Wiring:
 
 Connect GND & PIN 25 via resistor 10K Ohm
 
