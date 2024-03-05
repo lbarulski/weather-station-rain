@@ -33,6 +33,11 @@ instances = dict(
         name="J18",
         network_ssid="dom",
         network_pass="dom12345",
+    ),
+    o28_98=dict(
+        name="O28.O98",
+        network_ssid="chmielu",
+        network_pass="1qazxsw2",
     )
 )
 
