@@ -1,3 +1,5 @@
+### DEPRECATED! See attiny85 version
+
 ### Dependencies:
 - CH340 driver - CH34xVCPDriver
 - make 
